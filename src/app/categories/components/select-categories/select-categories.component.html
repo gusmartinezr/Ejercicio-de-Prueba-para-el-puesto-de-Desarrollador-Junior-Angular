@@ -1,0 +1,18 @@
+<form [formGroup]="form">
+    <p-autoComplete
+      formControlName="category"
+      [suggestions]="categoriesSugeridas"
+      (completeMethod)="cargarCategoriesSugeridas($event)"
+      field="name"
+      [dropdown]="true"
+      styleClass="w-full"
+      appendTo="body"
+    >
+      <ng-template let-item pTemplate="item">
+        <div class="category-item">
+          <div>{{ item.name }}</div>
+        </div>
+      </ng-template>
+    </p-autoComplete>
+  </form>
+  

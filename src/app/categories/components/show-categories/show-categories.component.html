@@ -1,0 +1,21 @@
+<p-dialog
+  header="Header"
+  [(visible)]="visible"
+  [style]="{ width: '50vw' }"
+  [closable]="false"
+>
+  <ng-template pTemplate="header">
+    <span class="text-xl font-bold">Category: {{ name | uppercase }}</span>
+  </ng-template>
+  <p>
+    {{ description }}
+  </p>
+  <ng-template pTemplate="footer">
+    <p-button
+      icon="pi pi-check"
+      (click)="showDialog($event)"
+      label="Ok"
+      styleClass="p-button-text"
+    ></p-button>
+  </ng-template>
+</p-dialog>

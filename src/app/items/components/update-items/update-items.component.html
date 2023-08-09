@@ -1,0 +1,105 @@
+<p-toast position="top-center" key="tc"></p-toast>
+<p-dialog
+  header="ITEM UPDATE FORM"
+  [(visible)]="mostrarModal"
+  [modal]="true"
+  [style]="{ width: '60vw' }"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+>
+  <form autocomplete="off" [formGroup]="form" (ngSubmit)="UpdateItem($event)">
+    <!-- formulario principal -->
+    <div class="card mt-0 p-1">
+      <div class="formgrid grid">
+        <div class="field col-6">
+          <label for="name">CODE: </label>
+          <input
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            type="text"
+            pInputText
+            formControlName="code"
+          />
+        </div>
+        <div class="field col-6">
+          <label for="name">NAME: </label>
+          <input
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            type="text"
+            pInputText
+            formControlName="name"
+          />
+        </div>
+        <div class="field col-12">
+          <label for="description">DESCRIPTION: </label>
+          <textarea
+            rows="2"
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            formControlName="description"
+            pInputTextarea
+          ></textarea>
+        </div>
+        <div class="field col-6">
+          <label for="defaultPrice">DEFAULT PRICE: </label>
+          <input
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            type="number"
+            pInputText
+            formControlName="defaultPrice"
+          />
+        </div>
+        <div class="field col-6">
+          <label for="defaultCost">DEFAULT COST: </label>
+          <input
+            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+            type="text"
+            pInputText
+            formControlName="defaultCost"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-12 flex justify-content-end flex-wrap">
+      <p-confirmDialog
+        header="Confirmation"
+        icon="pi pi-exclamation-triangle"
+        class=""
+      >
+      </p-confirmDialog>
+      <button
+        pButton
+        label="Guardar"
+        type="button"
+        (click)="confirmar($event)"
+      ></button>
+      <span class="ml-3"></span>
+      <button
+        pButton
+        (click)="emitirMostrarModal($event)"
+        label="Cancelar"
+      ></button>
+    </div>
+    <div class="col-12">
+      <div
+        *ngIf="cargando"
+        class="flex justify-content-center align-items-center"
+      >
+        <p-progressSpinner
+          [style]="{ width: '50px', height: '50px' }"
+          styleClass="custom-spinner"
+          strokeWidth="8"
+          fill="#EEEEEE"
+          animationDuration=".5s"
+        ></p-progressSpinner>
+        <span [ngStyle]="{ color: 'var(--bluegray-500)' }"
+          >Registrando Informacion, espere!...</span
+        >
+      </div>
+    </div>
+    <p-progressBar
+      *ngIf="showProgressBar"
+      mode="indeterminate"
+      [style]="{ height: '6px' }"
+    ></p-progressBar>
+  </form>
+</p-dialog>
